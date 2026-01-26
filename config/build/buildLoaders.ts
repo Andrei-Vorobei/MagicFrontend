@@ -34,7 +34,7 @@ export function buildLoders(options: BuildOptions):ModuleOptions['rules'] {
   };
 
   const scssLoader = {
-    test: /\.s[ac]ss$/i,
+    test: /\.s?[ac]ss$/i,
     use: [
       // Creates `style` nodes from JS strings
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -57,10 +57,19 @@ export function buildLoders(options: BuildOptions):ModuleOptions['rules'] {
     exclude: /node_modules/,
   };
 
+  const fontsLoader = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'fonts/[name][ext]' // Шрифты будут в папке dist/fonts/
+    }
+  };
+
   const babelLoader = buildBabelLoader(options);
 
   return [
     assetsLoader,
+    fontsLoader,
     scssLoader,
     // tsLoader,
     babelLoader,

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import './styles/fonts.css';
 import { App } from "@/components/App/App";
 
 const root = document.getElementById('root');
