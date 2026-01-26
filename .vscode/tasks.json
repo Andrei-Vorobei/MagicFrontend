@@ -1,0 +1,71 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "label": "npm: start",
+      "detail": "webpack serve --env port=5000 mode=development",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build:dev",
+      "problemMatcher": [],
+      "label": "npm: build:dev",
+      "detail": "webpack --env mode=development",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build:prod",
+      "problemMatcher": [],
+      "label": "npm: build:prod",
+      "detail": "webpack --env mode=production",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build:prod:analyzer",
+      "problemMatcher": [],
+      "label": "npm: build:prod:analyzer",
+      "detail": "webpack --env mode=production analyzer=true",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build:desktop",
+      "problemMatcher": [],
+      "label": "npm: build:desktop",
+      "detail": "webpack --env mode=production platform=desktop",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "npm",
+      "script": "build:mobile",
+      "problemMatcher": [],
+      "label": "npm: build:mobile",
+      "detail": "webpack --env mode=production platform=mobile",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    }
+  ]
+}
