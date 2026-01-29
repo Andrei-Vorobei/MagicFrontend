@@ -6,7 +6,7 @@
       "script": "start",
       "problemMatcher": [],
       "label": "npm: start",
-      "detail": "webpack serve --env port=5000 mode=development",
+      "detail": "webpack serve --env mode=development",
       "group": {
         "kind": "build",
         "isDefault": true

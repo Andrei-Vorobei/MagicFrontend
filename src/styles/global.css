@@ -1,12 +1,15 @@
-/* @font-face {
-  font-family: 'MyFont';
-  src: url('../fonts/MyCustomFont.woff2') format('woff2'),
-       url('../fonts/MyCustomFont.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+
+#root {
+  background-image: url(/public/moroccan-flower.png);
+  flex: 1;
 }

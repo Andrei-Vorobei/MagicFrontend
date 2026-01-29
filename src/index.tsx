@@ -1,8 +1,7 @@
-import { Suspense } from "react";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './styles/global.css';
-import { App } from "@/components/App/App";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { getRoutes } from "./routes";
 
 const root = document.getElementById('root');
 
@@ -12,23 +11,6 @@ if (!root) {
 
 const container = createRoot(root);
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: '/about',
-        element: <Suspense fallback='Loading...'><div>ABOUT</div></Suspense>
-      },
-      {
-        path: '/shop',
-        element: (
-          <Suspense fallback='Loading...'><div>SHOP</div></Suspense>
-        )
-      }
-    ]
-  },
-]);
+const router = createBrowserRouter(getRoutes());
 
 container.render(<RouterProvider router={router} />);

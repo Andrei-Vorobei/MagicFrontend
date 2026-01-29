@@ -16,3 +16,26 @@ declare module "*.svg" {
 }
 
 declare const __PLATFORM__: 'desktop' | 'mobile';
+
+// declare module '@material-ui/core/styles' {
+// import { PaletteColor, PaletteColorOptions } from "@material-ui/core/styles/createPalette";
+
+//   interface Palette {
+//     danger: PaletteColor;
+//     success: PaletteColor;
+//     warning: PaletteColor;
+//   }
+//   interface PaletteOptions {
+//     danger?: PaletteColorOptions;
+//     success?: PaletteColorOptions;
+//     warning?: PaletteColorOptions;
+//   }
+// }
+
+// declare module '@material-ui/core/Button' {
+//   interface ButtonPropsColorOverrides {
+//     danger: true;
+//     success: true;
+//     warning: true;
+//   }
+// }
