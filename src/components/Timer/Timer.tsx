@@ -1,54 +1,69 @@
+import { useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
-import { Box, CSSProperties, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { CoolDown } from "./CoolDown";
-import { useTimer } from "./useTimer";
 import { CreateTimer } from './CreateTimer';
+import { useInitTimer } from './useInitTimer';
+
+export type TimersType = {
+  date: number;
+  title: string;
+};
+
+type TimerType = {
+  days: number | string;
+  hours: number | string;
+  minutes: number | string;
+  seconds: number | string;
+}
+
+export type CoolDownType = {
+  timerItems: TimerType;
+  title: string;
+}
 
 export const Timer: React.FC = () => {
+  const {
+    initTimer,
+    titleDate,
+    dateNow
+  } = useInitTimer();
+  const [timersList, setTimersList] = useState<TimersType[]>(initTimer);
 
-  const dateNow = moment();
-  dateNow.locale('ru');
-
-  const newYearNum = new Date().getFullYear();
-  const neYearTimestamp = moment({
-    year: newYearNum +1,
-    month: 0,
-    hours: 1,
-    minutes: 1,
-    seconds: 1,
-  }).valueOf();
-
-  const [
-    daysNewYear,
-    hoursNewYear,
-    minutesNewYear,
-    secondsNewYear,
-  ] = useTimer({ nextDate: neYearTimestamp });
-
-  const content: CSSProperties = {
-    display: 'flex',
-    paddingBottom: 2,
+  const deleteTimer = (indx: number) => {
+    setTimersList(state => {
+      const newState = [...state];
+      newState.splice(indx, 1);
+      return newState;
+    });
   };
 
   return (
     <Box>
-      <Box sx={ content }>
+      <Box>
         <Box>
           <Typography variant='h4'>
-            До Нового Года осталось:
+            Timer
           </Typography>
           <Typography variant='h6'>
-            Сейчас { dateNow.format('DD MMMM YYYY HH:mm:ss') }
+            Сейчас { titleDate }
           </Typography>
         </Box>
-        <CoolDown
-          days={daysNewYear}
-          hours={hoursNewYear}
-          minutes={minutesNewYear}
-          seconds={secondsNewYear}
-        />
+        <Box display='flex' gap={2} flexDirection='column'>
+          {
+            timersList.map((item, indx) => (
+              <CoolDown
+                key={`${indx}_${item.date}`}
+                dateNow={dateNow}
+                date={item.date}
+                title={item.title}
+                deleteTimer={!!indx && (() => deleteTimer(indx))}
+              />
+            ))
+          }
+        </Box>
       </Box>
-      <CreateTimer />
+      <CreateTimer addDate={(date) => setTimersList(state => [...state, date])} />
     </Box>
   );
 };

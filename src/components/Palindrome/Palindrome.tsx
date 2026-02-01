@@ -112,7 +112,7 @@ export const Palindrome: React.FC = () => {
                   edge="end"
                   onClick={() => deletePalindromeItem(indx)}
                 >
-                  <DeleteForeverIcon />
+                  <DeleteForeverIcon fontSize="large" />
                 </IconButton>
               </ListItem>
             ))}

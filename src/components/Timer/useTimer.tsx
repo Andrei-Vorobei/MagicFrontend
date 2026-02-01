@@ -1,31 +1,21 @@
-import { useEffect, useMemo, useState } from "react";
-
-type TimerArgs = {
-  nextDate: number
-}
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { TimersType } from "./Timer";
 
 type TimerReturn = [
     days: number | string,
     hours: number | string,
     minutes: number | string,
     seconds: number | string,
-]
+];
 
-type UseTimer<A, R> = (args: A)=> R
+type TimerArg = {
 
-export const useTimer: UseTimer<TimerArgs, TimerReturn> = ({
-  nextDate
-}) => {
-  const [ dateNow, setDateNow ] = useState(Date.now());
+}
 
-  useEffect(() => {
-    const timerId = setInterval(() => setDateNow(Date.now()), 1000);
-    return () => clearInterval(timerId);
-  }, []);
+type UseTimer<A, S, D> = (args: A, set: S, dN: number) => void;
 
-  const delta = useMemo(() => {
-    return nextDate - dateNow;
-  }, [dateNow]);
+export const useTimer: UseTimer<TimersType[], Dispatch<SetStateAction<TimersType[]>>, TimerReturn> = 
+( timersList ) => {
 
   // console.log('moment(nextDate): ', moment(nextDate).format('DD MMMM YYYY HH:mm:ss'));
   // console.log('moment(dateNow): ', moment(dateNow).format('DD MMMM YYYY HH:mm:ss'));
@@ -41,15 +31,10 @@ export const useTimer: UseTimer<TimerArgs, TimerReturn> = ({
     }
   };
 
-  const days = Math.floor(delta / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(delta / (1000 * 60 * 60) % 24);
-  const minutes = Math.floor(delta / (1000 * 60) % 60);
-  const seconds = Math.floor(delta / 1000 % 60);
-
-  return [
-    format(days),
-    format(hours),
-    format(minutes),
-    format(seconds),
-  ];
+  // return [
+  //   format(days),
+  //   format(hours),
+  //   format(minutes),
+  //   format(seconds),
+  // ];
 };
