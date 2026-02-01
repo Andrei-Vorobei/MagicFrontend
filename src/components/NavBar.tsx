@@ -3,12 +3,18 @@ import { AppBar, Box, CSSProperties, IconButton, Link, Toolbar, Typography } fro
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import MenuIcon from '@mui/icons-material/Menu';
+import StreamIcon from '@mui/icons-material/Stream';
 
 const navItems = [
   {
     title: 'Home',
-    url: '/home',
+    url: '/',
     icon: HomeIcon,
+  },
+  {
+    title: 'MagicFrontend',
+    url: '/magic-frontend',
+    icon: StreamIcon,
   },
   {
     title: 'About',

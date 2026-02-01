@@ -4,7 +4,7 @@ import { Palindrome } from "@/components/Palindrome/Palindrome";
 import { Timer } from "@/components/Timer/Timer";
 import { StringReverse } from "@/components/StringReverse/StringRevers";
 
-export const HomePage: React.FC = () => {
+export const MagicFrontend: React.FC = () => {
   const home: CSSProperties = {
     height: '100%',
     padding: 1,

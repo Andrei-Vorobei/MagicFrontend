@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { RoutType } from "./types/globalTypes";
 import { App } from "./components/App";
-import { HomePage } from "./pages/HomePage";
+import { MagicFrontend } from "./pages/MagicFrontend";
 
 
 export const getRoutes = (): RoutType[] => {
@@ -12,8 +12,8 @@ export const getRoutes = (): RoutType[] => {
       element: <App />,
       children: [
         {
-          path: '/home',
-          element: <Suspense fallback='Loading...'><HomePage /></Suspense>
+          path: '/magic-frontend',
+          element: <Suspense fallback='Loading...'><MagicFrontend /></Suspense>
         },
         {
           path: '/about',
