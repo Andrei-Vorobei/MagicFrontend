@@ -22,10 +22,14 @@ export const MyInput: React.FC<TextFieldProps> = (props) => {
       inputRef={inputRef}
       onChange={onChange}
       value={value}
-      InputProps={{
-        endAdornment: value && <InputAdornment position="end">
-          <IconButton><ClearIcon onClick={clear} /></IconButton>
-        </InputAdornment>
+      slotProps={{
+        input: {
+          endAdornment: value && (
+            <InputAdornment position="end">
+              <IconButton><ClearIcon onClick={clear} /></IconButton>
+            </InputAdornment>
+          )
+        }
       }}
       {...inputProps}
     />

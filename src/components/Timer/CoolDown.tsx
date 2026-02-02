@@ -1,13 +1,15 @@
-import { MouseEventHandler, useMemo } from "react";
+import { memo, MouseEventHandler, useMemo } from "react";
 import { Box, Card, CSSProperties, IconButton, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 type CoolDownType = {
   date: number;
   title?: string;
-  deleteTimer?: MouseEventHandler<HTMLDivElement>;
   dateNow: number;
+  deleteTimer?: MouseEventHandler<HTMLDivElement>;
+  editTimer?: MouseEventHandler<HTMLDivElement>;
 }
 
 const useStyles = makeStyles({
@@ -30,8 +32,9 @@ const useStyles = makeStyles({
 export const CoolDown: React.FC<CoolDownType> = ({
     date,
     title,
+    dateNow,
     deleteTimer,
-    dateNow
+    editTimer
   }) => {
   const classes = useStyles();
 
@@ -114,6 +117,13 @@ export const CoolDown: React.FC<CoolDownType> = ({
         </Card>
       </Box>
       <Box className={classes.icon}>
+        {editTimer && (
+          <Box onClick={editTimer}>
+            <IconButton>
+              <BorderColorIcon fontSize="large" />
+            </IconButton>
+          </Box>
+        )}
         {deleteTimer && (
           <Box onClick={deleteTimer}>
             <IconButton>
@@ -125,3 +135,5 @@ export const CoolDown: React.FC<CoolDownType> = ({
     </Box>
   );
 };
+
+export default memo(CoolDown);

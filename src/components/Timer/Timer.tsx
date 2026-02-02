@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { CoolDown } from "./CoolDown";
-import { CreateTimer } from './CreateTimer';
+import CoolDown from "./CoolDown";
+import CreateTimer from './CreateTimer';
 import { useInitTimer } from './useInitTimer';
 
 export type TimersType = {
   date: number;
   title: string;
+  indx?: number;
+  noDelete?: boolean;
 };
 
 type TimerType = {
@@ -21,7 +23,14 @@ export type CoolDownType = {
   title: string;
 }
 
+export type CreatorDataType = {
+  indx?: number;
+  timer?: TimersType;
+  isOpen: boolean;
+};
+
 export const Timer: React.FC = () => {
+  const [creatorData, setCreatorData] = useState<CreatorDataType>({ isOpen: false });
   const {
     initTimer,
     titleDate,
@@ -36,6 +45,26 @@ export const Timer: React.FC = () => {
       return newState;
     });
   };
+
+  const editorTimer = (indx: number, item: TimersType) => {
+    const data = { indx, timer: item, isOpen: true };
+    console.log('dataaaaaaaaaaaaaaaaaaa: ', data);
+    setCreatorData(data);
+    // setIsOpenCreator(true);
+  };
+
+  const addDate = (date: TimersType) => {
+    console.log('timersList: ', timersList);
+    if (date.indx) {
+      setTimersList(state => {
+        const newState = [...state];
+        newState.splice(date.indx, 1, { date: date.date, title: date.title });
+        return newState;
+      });
+    } else {
+      setTimersList(state => [...state, date]);
+    }
+  }
 
   return (
     <Box>
@@ -56,13 +85,20 @@ export const Timer: React.FC = () => {
                 dateNow={dateNow}
                 date={item.date}
                 title={item.title}
-                deleteTimer={!!indx && (() => deleteTimer(indx))}
+                deleteTimer={!item.noDelete && (() => deleteTimer(indx))}
+                editTimer={!item.noDelete && (() => editorTimer(indx, item))}
               />
             ))
           }
         </Box>
       </Box>
-      <CreateTimer addDate={(date) => setTimersList(state => [...state, date])} />
+      <CreateTimer
+        isOpen={creatorData.isOpen}
+        // setIsOpen={setIsOpenCreator}
+        setCreatorData={setCreatorData}
+        addDate={(date) => addDate(date)}
+        data={creatorData}
+      />
     </Box>
   );
 };

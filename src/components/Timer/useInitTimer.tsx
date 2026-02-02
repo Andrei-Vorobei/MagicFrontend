@@ -25,7 +25,7 @@ export const useInitTimer = () => {
       seconds: 1,
     }).valueOf();
 
-    return [{ date: neYearTimestamp, title: 'До Нового Года осталось' }];
+    return [{ date: neYearTimestamp, title: 'До Нового Года осталось', noDelete: true }];
   }, []);
 
   return {
