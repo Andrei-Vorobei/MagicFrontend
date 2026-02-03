@@ -3,6 +3,7 @@ import { Increment } from '@/components/Increment/Increment';
 import { Palindrome } from "@/components/Palindrome/Palindrome";
 import { Timer } from "@/components/Timer/Timer";
 import { StringReverse } from "@/components/StringReverse/StringRevers";
+import { Anagram } from "@/components/Anagrom/Anagram";
 
 export const MagicFrontend: React.FC = () => {
   const home: CSSProperties = {
@@ -30,6 +31,9 @@ export const MagicFrontend: React.FC = () => {
       </Paper>
       <Paper elevation={5} sx={ paper }>
         <StringReverse />
+      </Paper>
+      <Paper elevation={5} sx={ paper }>
+        <Anagram />
       </Paper>
     </Box>
   )

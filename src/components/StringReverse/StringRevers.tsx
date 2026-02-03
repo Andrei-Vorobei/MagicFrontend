@@ -3,17 +3,33 @@ import { Box, Typography } from "@mui/material";
 import { MyInput } from "../UI/MyInput";
 import { CodeModal } from "../CodeModal";
 import codeImg from './image.png';
+import { CSSProperties } from "@mui/styles";
+
+const stringBlock: CSSProperties = {
+  padding: 1,
+  backgroundColor: '#d3d3d39c',
+};
 
 export const StringReverse: React.FC = () => {
   const [value, setValue] = useState('');
   const [reversStr, setReversStr] = useState('');
 
+  // const stringRevers = useMemo(() => {
+  //   const revers = [];
+  //   for (let i = 0; i < value.length; i++) {
+  //     revers[i] = value[value.length - 1 - i];
+  //   }
+  //   return revers.join('');
+  // }, [value]);
+
   const stringRevers = useMemo(() => {
-    const revers = [];
-    for (let i = 0; i < value.length; i++) {
-      revers[i] = value[value.length - 1 - i];
+    let reversStr = '';
+
+    for (let i = value.length - 1; i >= 0; i--) {
+      reversStr += value[i];
     }
-    return revers.join('');
+
+    return reversStr;
   }, [value]);
 
   useEffect(() => {
@@ -37,12 +53,12 @@ export const StringReverse: React.FC = () => {
       {reversStr && (
         <>
           <Box pt={2}>
-            <Typography variant="h5">
+            <Typography sx={{ fontWeight: 'bold' }}>
               Результат:
             </Typography>
           </Box>
-          <Box pl={5}>
-            <Typography variant="h6">
+          <Box sx={ stringBlock }>
+            <Typography>
               {reversStr}
             </Typography>
           </Box>

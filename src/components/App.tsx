@@ -3,11 +3,12 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Outlet } from 'react-router';
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DndProvider } from 'react-dnd'
 import { createTheme, CSSProperties, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { NavBar } from './NavBar';
-import { Box } from '@mui/material';
 
 const theme = createTheme({
   // typography: {
@@ -40,13 +41,16 @@ const containerStyles: CSSProperties = {
 };
 
 export const App: React.FC = () => {
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Container sx={ containerStyles } disableGutters={true}>
-        <NavBar />
-        <Outlet />
-      </Container>
-    </ThemeProvider>
+    <DndProvider backend={HTML5Backend}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container sx={ containerStyles } disableGutters={true}>
+          <NavBar />
+          <Outlet />
+        </Container>
+      </ThemeProvider>
+    </DndProvider>
   );
 }

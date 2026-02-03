@@ -41,8 +41,6 @@ export const CreateTimer: React.FC<CreateTimerType> = ({
     }
   }, [isOpen]);
 
-  console.log('title: ', title);
-
   const timestamp = useMemo(() => {
     return new Date(startDate).getTime();
   }, [startDate])

@@ -48,13 +48,10 @@ export const Timer: React.FC = () => {
 
   const editorTimer = (indx: number, item: TimersType) => {
     const data = { indx, timer: item, isOpen: true };
-    console.log('dataaaaaaaaaaaaaaaaaaa: ', data);
     setCreatorData(data);
-    // setIsOpenCreator(true);
   };
 
   const addDate = (date: TimersType) => {
-    console.log('timersList: ', timersList);
     if (date.indx) {
       setTimersList(state => {
         const newState = [...state];
@@ -94,7 +91,6 @@ export const Timer: React.FC = () => {
       </Box>
       <CreateTimer
         isOpen={creatorData.isOpen}
-        // setIsOpen={setIsOpenCreator}
         setCreatorData={setCreatorData}
         addDate={(date) => addDate(date)}
         data={creatorData}

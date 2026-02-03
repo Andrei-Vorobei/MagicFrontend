@@ -3,6 +3,7 @@ import { App } from "./components/App";
 import { RouteObject } from "react-router";
 
 const LazyMagicFrontend = lazy(() => import('./pages/MagicFrontend'));
+const LazyJSTaskes = lazy(() => import('./pages/JSTaskes'));
 
 export const getRoutes = (): RouteObject[] => {
   const routes: RouteObject[] = [
@@ -16,7 +17,7 @@ export const getRoutes = (): RouteObject[] => {
         },
         {
           path: '/about',
-          element: <Suspense fallback='Loading...'><div>ABOUT</div></Suspense>
+          element: <Suspense fallback='Loading...'><LazyJSTaskes /></Suspense>
         },
         {
           path: '*',

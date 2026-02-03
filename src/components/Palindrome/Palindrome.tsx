@@ -1,9 +1,10 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { Box, Button, CSSProperties, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Button, IconButton, List, ListItem, ListItemText, Typography } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { MyInput } from "../UI/MyInput";
 import { CodeModal } from "../CodeModal";
 import codeImg from './image.png';
+import { CSSProperties } from "@mui/styles";
 
 export const Palindrome: React.FC = () => {
   const [string, setString] = useState('A man, a plan, a canal: Panama');
