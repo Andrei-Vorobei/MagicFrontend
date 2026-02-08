@@ -3,6 +3,7 @@ import { Box, Card, CSSProperties, IconButton, Typography } from "@mui/material"
 import { makeStyles } from "@mui/styles";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import moment from "moment";
 
 type CoolDownType = {
   date: number;
@@ -15,8 +16,9 @@ type CoolDownType = {
 const useStyles = makeStyles({
   titleBox: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'end',
+    flexDirection: 'column',
+    alignItems: 'end',
+    justifyContent: 'center',
     padding: '0 8px',
     flexGrow: 1,
   },
@@ -45,6 +47,10 @@ export const CoolDown: React.FC<CoolDownType> = ({
       return num;
     }
   };
+
+  const formatDate = useMemo(() => {
+    return moment(date).locale('ru').format('DD MMMM YYYY');
+  }, [date]);
 
   const delta = useMemo(() => {
     return date - dateNow;
@@ -78,6 +84,9 @@ export const CoolDown: React.FC<CoolDownType> = ({
   return (
     <Box className={classes.content}>
       <Box className={classes.titleBox}>
+        <Typography>
+          { formatDate }
+        </Typography>
         <Typography variant="h5">
           { title }:
         </Typography>
